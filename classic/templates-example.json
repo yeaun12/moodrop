@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "sample-0",
+      "name": "일상의 짤",
+      "state": {
+        "ratio": "1:1",
+        "text": "오늘 할 일\n일단, 한 입.",
+        "size": 92,
+        "color": "#ffffff",
+        "bg": "#315bdf",
+        "x": 50,
+        "y": 53,
+        "align": "center",
+        "theme": "blue",
+        "image": null,
+        "zoom": 1,
+        "ix": 50,
+        "iy": 50,
+        "shade": 20
+      }
+    },
+    {
+      "id": "sample-1",
+      "name": "응원 카드",
+      "state": {
+        "ratio": "4:5",
+        "text": "별일 없어도\n네 편이야.",
+        "size": 92,
+        "color": "#ffffff",
+        "bg": "#ad4878",
+        "x": 50,
+        "y": 53,
+        "align": "center",
+        "theme": "pink",
+        "image": null,
+        "zoom": 1,
+        "ix": 50,
+        "iy": 50,
+        "shade": 20
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "나에게 보내는 카드",
+      "state": {
+        "ratio": "9:16",
+        "text": "작게 시작해도\n시작은 시작.",
+        "size": 92,
+        "color": "#ffffff",
+        "bg": "#287768",
+        "x": 50,
+        "y": 53,
+        "align": "center",
+        "theme": "green",
+        "image": null,
+        "zoom": 1,
+        "ix": 50,
+        "iy": 50,
+        "shade": 20
+      }
+    }
+  ]
+}
