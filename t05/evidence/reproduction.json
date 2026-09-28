@@ -1,0 +1,18 @@
+{
+  "source_hashes_match": true,
+  "fresh_folder_commands": [
+    "git clone --no-hardlinks <A working repository> <new directory>",
+    "git checkout --detach a909057b590fb98712ad6af0bb9a7bfa77b97393",
+    "npm ci --ignore-scripts",
+    "CHROMIUM_EXECUTABLE=<prepared Chromium 153 binary> T05_OUTPUT=<evidence directory> npm run test:t05"
+  ],
+  "runtime": "Node 24.19.0; npm; Playwright 1.62.1; Chromium 153.0.8010.0",
+  "rounds": 2,
+  "error_rounds": 2,
+  "results_per_round": {
+    "PASS": 3,
+    "FAIL": 7,
+    "BLOCKED": 0
+  },
+  "note": "Fresh folder, fresh dependencies and fresh browser contexts; host Chromium binary reused. Browser download standard path was unavailable; no .env or credentials required."
+}
