@@ -1,0 +1,12 @@
+{
+  "phase": "A started",
+  "started_at": "2026-09-28T13:25:46+09:00",
+  "start_source": "3454356c28dc2fa184a3c816118a09966e058f2c",
+  "service": "ChatGPT",
+  "model": "not verified from user interface",
+  "time_limit_minutes": 45,
+  "request_limit": 10,
+  "user_requests": 1,
+  "request_definition": "User task messages after A start; internal tool calls excluded",
+  "planned_stop": "History capture and list implemented; record-click restoration and undo/redo cursor synchronization left to B"
+}

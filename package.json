@@ -1,0 +1,8 @@
+{
+  "name": "moodrop-t05",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"test:t05":"node t05/run-tests.cjs"},
+  "devDependencies": {"playwright":"1.62.1"},
+  "engines": {"node": ">=20"}
+}

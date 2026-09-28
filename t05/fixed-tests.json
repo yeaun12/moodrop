@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "freeze_note": "H01–H10 were fixed in the conversation before the user recorded A start. This file transcribes those criteria; no exact freeze timestamp is claimed.",
+  "initial": {
+    "text": "오늘 좀\n좋음.",
+    "color": "#e95b25",
+    "x": 48,
+    "y": 20
+  },
+  "S1": {
+    "text": "오늘도 좋음",
+    "color": "#e95b25",
+    "x": 48,
+    "y": 20
+  },
+  "S2": {
+    "text": "오늘도 좋음",
+    "color": "#cf3934",
+    "x": 48,
+    "y": 20
+  },
+  "S3": {
+    "text": "오늘도 좋음",
+    "color": "#cf3934",
+    "x": 60,
+    "y": 20
+  },
+  "tests": [
+    {
+      "id": "H01",
+      "input": "Fresh browser; open history",
+      "expected": "Exactly one initial-state entry, marked current"
+    },
+    {
+      "id": "H02",
+      "input": "S0 to S1",
+      "expected": "Text-change entry added and current; text is 오늘도 좋음"
+    },
+    {
+      "id": "H03",
+      "input": "S2 then click S1",
+      "expected": "S1 values restored and S1 current"
+    },
+    {
+      "id": "H04",
+      "input": "S3 then click S2",
+      "expected": "S2 values restored and S2 current"
+    },
+    {
+      "id": "H05",
+      "input": "S3 then click S0",
+      "expected": "Initial text, color, x, y restored and S0 current"
+    },
+    {
+      "id": "H06",
+      "input": "S3 then click S1 then S3",
+      "expected": "Both selected states restored; future entries preserved; final S3 current"
+    },
+    {
+      "id": "H07",
+      "input": "S3 then click current S3",
+      "expected": "Whole card, entry count and current entry unchanged"
+    },
+    {
+      "id": "H08",
+      "input": "S3 then S1 then set text to 새로운 시작",
+      "expected": "Old S2 and S3 removed; new text current; color #e95b25, x48,y20; redo disabled"
+    },
+    {
+      "id": "H09",
+      "input": "S3 then undo then redo",
+      "expected": "Undo: S2 and x48; redo: S3 and x60; both preserve text/color/y"
+    },
+    {
+      "id": "H10",
+      "input": "S3 then S1 then download PNG",
+      "expected": "Decoded 1080x1350 PNG equals S1 canvas pixels and restored preview; no selection overlay"
+    }
+  ]
+}
