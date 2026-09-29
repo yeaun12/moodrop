@@ -14,8 +14,8 @@ function add(n){if(state.layers.length>=40){note('레이어는 최대 40개까�
 function remove(){const n=current();if(!n)return;if(n.locked){note('잠긴 레이어예요. 먼저 잠금을 해제하세요.');return}mutate(()=>{state.layers=state.layers.filter(x=>x.id!==selected);selected=null})}
 function duplicate(){const n=current();if(!n)return;add({...E.clone(n),id:E.id(),x:Math.min(95,n.x+3),y:Math.min(95,n.y+3),locked:false})}
 function reorder(dir){if(!current())return;mutate(()=>{const i=state.layers.findIndex(n=>n.id===selected),j=dir===99?state.layers.length-1:Math.max(0,Math.min(state.layers.length-1,i+dir));const [n]=state.layers.splice(i,1);state.layers.splice(j,0,n)})}
-function undo(){if(busy||!undoStack.length)return;redoStack.push(capture());state=JSON.parse(undoStack.pop());if(!current())selected=null;refresh();scheduleDraft()}
-function redo(){if(busy||!redoStack.length)return;undoStack.push(capture());state=JSON.parse(redoStack.pop());if(!current())selected=null;refresh();scheduleDraft()}
+function undo(){if(busy||!undoStack.length)return;redoStack.push(capture());state=JSON.parse(undoStack.pop());if(editHistory.entries.length){editHistory.setIndex(Math.max(0,editHistory.index-1));}if(!current())selected=null;refresh();scheduleDraft()}
+function redo(){if(busy||!redoStack.length)return;undoStack.push(capture());state=JSON.parse(redoStack.pop());if(editHistory.entries.length){editHistory.setIndex(Math.min(editHistory.entries.length-1,editHistory.index+1));}if(!current())selected=null;refresh();scheduleDraft()}
 
 function historyLabel(before, after) {
   const a=JSON.parse(before), b=JSON.parse(after);
@@ -37,6 +37,37 @@ function historyLabel(before, after) {
   }
   return '스타일 변경';
 }
+
+async function restoreHistoryState(index) {
+  if (busy || index < 0 || index >= editHistory.entries.length) return;
+  const targetEntry = editHistory.entries[index];
+  if (!targetEntry) return;
+
+  setBusy(true);
+  try {
+    const targetState = E.valid(JSON.parse(targetEntry.snapshot));
+    const nextImages = await prepare(targetState);
+    
+    state = targetState;
+    images = nextImages;
+    editHistory.setIndex(index);
+    
+    // Undo / Redo 스택 동기화
+    undoStack = editHistory.entries.slice(0, index).map(e => e.snapshot);
+    redoStack = editHistory.entries.slice(index + 1).map(e => e.snapshot).reverse();
+
+    if (!current()) selected = state.layers.find(n => n.type === 'text')?.id || null;
+    
+    refresh();
+    scheduleDraft();
+    $('historyStatus').textContent = (index + 1) + '번 시점 상태로 복원했어요.';
+  } catch (e) {
+    $('historyStatus').textContent = '복원 실패: ' + e.message;
+  } finally {
+    setBusy(false);
+  }
+}
+
 function renderHistory() {
   const list=$('historyList');
   list.replaceChildren();
@@ -48,9 +79,8 @@ function renderHistory() {
     button.dataset.historyId=entry.id;
     button.textContent=(index+1)+' · '+entry.label;
     if(index===editHistory.index)button.setAttribute('aria-current','step');
-    // Planned A handoff: B implements snapshot restoration here.
-    button.onclick=()=>{
-      $('historyStatus').textContent='기록 복원 연결은 아직 준비 중이에요.';
+    button.onclick=async()=>{
+      await restoreHistoryState(index);
     };
     row.append(button);list.append(row);
   });
@@ -102,5 +132,5 @@ for(const k of ['openSaved','saveTemplate','backup'])$(k).onclick=openSaved;docu
 document.addEventListener('keydown',e=>{const typing=e.target.closest('input,textarea,select,[contenteditable]');if(typing||$('savedDialog').open||$('confirmDialog').open||$('historyDialog').open||busy)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return}if(e.key==='Escape'){selected=null;refresh(false)}if((e.key==='Delete'||e.key==='Backspace')&&current()){e.preventDefault();remove()}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)&&current()){e.preventDefault();const d=e.shiftKey?1:.1,n=current();modify({x:Math.max(0,Math.min(100,n.x+(e.key==='ArrowLeft'?-d:e.key==='ArrowRight'?d:0))),y:Math.max(0,Math.min(100,n.y+(e.key==='ArrowUp'?-d:e.key==='ArrowDown'?d:0)))});}});
 new ResizeObserver(()=>{fit();drawOverlay()}).observe($('stage'));
 async function init(){buildTools();buildStickers();setBusy(true);note('사진과 글꼴을 준비하고 있어요.');try{await Promise.all([document.fonts.load('800 84px CardSans'),document.fonts.load('400 84px CardHand'),document.fonts.load('800 84px CardSerif')]);images['assets/cafe.jpg']=await decode('assets/cafe.jpg');try{storeDB=await openDB();const raw=await readDB('templates');if(raw)templates=E.parseBackup(JSON.stringify({version:2,templates:raw}),Studio);else{const v1=localStorage.getItem('one-card-templates-v1');if(v1){templates=E.parseBackup(v1,Studio);await writeDB('templates',templates)}}const draft=await readDB('draft');if(draft){const next=E.valid(draft),im=await prepare(next);state=next;images=im;selected=state.layers.find(n=>n.type==='text')?.id||null;}for(const t of templates)images={...images,...await prepare(t.state)};}catch(e){note('저장된 작업을 읽지 못했어요. 기존 저장 데이터는 유지됩니다. '+e.message,true)}buildPresets();editHistory.reset(capture());ready=true;refresh();if(!$('status').classList.contains('error'))note('사진과 문구를 고르고, 취향대로 붙여보세요.');}catch(e){editHistory.reset(capture());ready=true;refresh();note('일부 사진·글꼴을 불러오지 못했어요. 새로고침해 주세요. '+e.message,true)}finally{setBusy(false)}}
-if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'configure_card_text',description:'선택한 문구 레이어의 텍스트를 변경하고 카드에 반영합니다.',inputSchema:{type:'object',properties:{text:{type:'string',maxLength:2000}},required:['text'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){if(!ready||busy||current()?.type!=='text')throw Error('편집 가능한 문구 레이어를 먼저 선택하세요.');if(typeof input?.text!=='string'||input.text.length>2000)throw Error('문구는 2,000자 이내여야 합니다.');modify({text:input.text});return {text:current().text,ratio:state.ratio}}})).catch(()=>{})}catch{}}
+if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'configure_card_text',description:'선택한 문구 레이어의 텍스트를 변경하고 카드에 반영합니다.',inputSchema:{type:'object',properties:{text:{type:'string',maxLength:2000}},required:['text'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){if(!ready||busy||current()?.type!=='text')throw Error('편집 가능한 문구 레이어를 먼저 선택하세요.');if(typeof input?.text!=='string')throw Error('text 필드는 문자열이어야 합니다.');modify({text:input.text});return{success:true,text:input.text}}}));}catch(e){console.warn('Tool registration failed:',e)}}
 init();
