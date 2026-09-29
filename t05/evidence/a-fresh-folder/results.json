@@ -1,0 +1,362 @@
+{
+  "startedAt": "2026-09-28T04:34:50.400Z",
+  "finishedAt": "2026-09-28T04:34:59.670Z",
+  "commit": "a909057b590fb98712ad6af0bb9a7bfa77b97393",
+  "workingTreeDirty": false,
+  "environment": "Real Chromium via Playwright, fresh browser context per test",
+  "browserExecutable": "explicit executable",
+  "environmentError": null,
+  "sourceHashes": {
+    "editor.js": "d4d86950948b1f5e0afec9df194e356d1d6ffc19af0a82663215dff033d6f52d",
+    "history.js": "debdd2573296dd6eaead379ef16aadb069e738952946272166aed7f246632102",
+    "index.html": "0be67f74a9c540e3fc87921e1a6532cb6181ba1c0375ba18e2fee0a804d8775b",
+    "style.css": "a91fdd6679a69af07948b54787ab28e04588cf05df8edd8e6bc7fe8704d62d0b",
+    "engine.js": "7f51b0666c84170e119736b3f3226d3c6548e2c8db693b4a0d8545ae795373f9",
+    "core.js": "bb3bd286524dd6bf35f345841de0b7992dc9bc35bcadcc5e544b6dbe668b1887",
+    "t05/fixed-tests.json": "08efd7959b57a901cd96b025ad593fb832225a226b8a0ba6c4944c363b9a3ba0",
+    "t05/run-tests.cjs": "b8b3cc07cab0aa92139cccdc7ef6fcf56b9528fb43faa24ec2a68705869426a2"
+  },
+  "summary": {
+    "pass": 3,
+    "fail": 7,
+    "blocked": 0,
+    "errorRounds": 1
+  },
+  "tests": [
+    {
+      "id": "H01",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘 좀\n좋음.",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H02",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H03",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   color: '#cf3934',\n-   color: '#e95b25',\n    text: '오늘도 좋음',\n    x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H04",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    color: '#cf3934',\n    text: '오늘도 좋음',\n+   x: 60,\n-   x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H05",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   color: '#cf3934',\n+   text: '오늘도 좋음',\n+   x: 60,\n-   color: '#e95b25',\n-   text: '오늘 좀\\n좋음.',\n-   x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H06",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   color: '#cf3934',\n-   color: '#e95b25',\n    text: '오늘도 좋음',\n+   x: 60,\n-   x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H07",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H08",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   color: '#cf3934',\n-   color: '#e95b25',\n    text: '새로운 시작',\n+   x: 60,\n-   x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "새로운 시작",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": false
+          },
+          {
+            "id": "4",
+            "text": "5 · 문구 변경",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H09",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\nfalse !== true\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H10",
+      "status": "FAIL",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   color: '#cf3934',\n-   color: '#e95b25',\n    text: '오늘도 좋음',\n+   x: 60,\n-   x: 48,\n    y: 20\n  }\n",
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    }
+  ]
+}

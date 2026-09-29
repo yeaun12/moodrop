@@ -1,0 +1,352 @@
+{
+  "startedAt": "2026-09-29T00:22:53.540Z",
+  "finishedAt": "2026-09-29T00:23:02.317Z",
+  "commit": "289301a5bfe008f3d5605234a869f36c81b83583",
+  "workingTreeDirty": true,
+  "environment": "Real Chromium via Playwright, fresh browser context per test",
+  "browserExecutable": "Playwright default",
+  "environmentError": null,
+  "sourceHashes": {
+    "editor.js": "6ea040eca610db3541b10a6ab0cddb2822f1ce7f490c5739a54e4cb9021d8ec6",
+    "history.js": "8f080c880493975a8214a4f30ef7efea0bff7138a9c0f9db57c515a8c2d2c43c",
+    "index.html": "40aca7deb025b8abb24b554058153136008a3c5da3a0501d96f70eca05509000",
+    "style.css": "f1a55d60c70265c4c1950059bc0187c68fa07e41d0debd014463a0d49c9f5bb4",
+    "engine.js": "620133006cceb78e0c46c9f31954b3264eee6f343a2a4f58d1caffd103ff29c3",
+    "core.js": "74143e08f0ebdcbc31cbe2015c6ccc90a16f6eb6f7afd825da221f55e99a4e47",
+    "t05/fixed-tests.json": "247d47c72c4695ac571ce870e9db24f8906b3d5780550b347329cddd1fa28985",
+    "t05/run-tests.cjs": "689cee84318c4509415aed7b7c1f7e188aa4048dc314efaf82805ec442baef31"
+  },
+  "summary": {
+    "pass": 10,
+    "fail": 0,
+    "blocked": 0,
+    "errorRounds": 0
+  },
+  "tests": [
+    {
+      "id": "H01",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘 좀\n좋음.",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H02",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H03",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": true
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H04",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": true
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": false
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H05",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘 좀\n좋음.",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": true
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": false
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H06",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H07",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H08",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "새로운 시작",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "4",
+            "text": "3 · 문구 변경",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H09",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#cf3934",
+          "x": 60,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": false
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": true
+          }
+        ],
+        "pageErrors": []
+      }
+    },
+    {
+      "id": "H10",
+      "status": "PASS",
+      "error": null,
+      "observed": {
+        "values": {
+          "text": "오늘도 좋음",
+          "color": "#e95b25",
+          "x": 48,
+          "y": 20
+        },
+        "entries": [
+          {
+            "id": "0",
+            "text": "1 · 초기 상태",
+            "current": false
+          },
+          {
+            "id": "1",
+            "text": "2 · 문구 변경",
+            "current": true
+          },
+          {
+            "id": "2",
+            "text": "3 · 색상 변경",
+            "current": false
+          },
+          {
+            "id": "3",
+            "text": "4 · 위치 이동",
+            "current": false
+          }
+        ],
+        "pageErrors": []
+      }
+    }
+  ]
+}
